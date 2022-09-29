@@ -25,7 +25,7 @@ bash train_encoder.sh
 	- Positive samples: positive queries-based
 	- Negative samples: only random based, only negative queries-based, 50% random + 50% negative queries-based
 	- The examples of customized dataset used for hate speech detection task in this paper can be downloaded in the following URL. 
-	- hate speech detection task's retreived data: https://drive.google.com/drive/folders/1SFG3S7t6hDZoTNJeMvGLZMUuoxqW4WMo?usp=sharing
+	- hate speech detection task's retreived data: https://drive.google.com/file/d/1Im2xjPmkEetKBVwjDZ0gwBIIHv4CI6gw/view?usp=sharing
 	- user-defined content detection task's retreived data: https://drive.google.com/file/d/1px0FvPg4OxQdDxZWE0tIi7uhbP1h9qV5/view?usp=sharing)
 
 ```bash
