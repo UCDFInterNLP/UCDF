@@ -22,8 +22,8 @@ bash train_encoder.sh
 
 
 2. After training a retriever module, we should construct a customized dataset which is used for training a binary classification task using the trained retriever module. We should prepare two kinds of dataset (positive sampels / negative samples)
-	- Positive samples: With the method of building positive samples mentioned in the paper (min,avg), we can construct N+M number of positive samples. 
-	- Negative samples: We randomly sampeld same amount of data (N+M) from data collection, which is used as Wikipedia dataset in this paper.
+	- Positive samples: positive queries-based
+	- Negative samples: only random based, only negative queries-based, 50% random + 50% negative queries-based
 	- The examples of customized dataset used for hate speech detection task in this paper can be downloaded in the following URL. https://drive.google.com/file/d/1px0FvPg4OxQdDxZWE0tIi7uhbP1h9qV5/view?usp=sharing)
 
 ```bash
@@ -39,6 +39,7 @@ python build_customized_dataset.py
 4. Evaluate the quality of UCDF.
 	- We evalute the quality of UCDF with qualitative method and quantitative method. You can conduct quantitative experiment if there exists benchmark dataset. Since there are not a lot of benchmark datasets related to User-defined content (content-agnostic) in a real-world, you probably should implement using qualitative analysis.
 	- materials related to this task is in 'fine_tuning' folder.
+	- If you want to evaluate the quality of UCDF on other contents quantitatively, you should build your own customized test data. See (5. Customized test data).
 
 5. Customized test data
 	- We can check customized test data which is used in User-content detection task (Section4.2)
