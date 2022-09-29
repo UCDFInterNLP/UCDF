@@ -24,7 +24,9 @@ bash train_encoder.sh
 2. After training a retriever module, we should construct a customized dataset which is used for training a binary classification task using the trained retriever module. We should prepare two kinds of dataset (positive sampels / negative samples)
 	- Positive samples: positive queries-based
 	- Negative samples: only random based, only negative queries-based, 50% random + 50% negative queries-based
-	- The examples of customized dataset used for hate speech detection task in this paper can be downloaded in the following URL. https://drive.google.com/file/d/1px0FvPg4OxQdDxZWE0tIi7uhbP1h9qV5/view?usp=sharing)
+	- The examples of customized dataset used for hate speech detection task in this paper can be downloaded in the following URL. 
+	- hate speech detection task's retreived data:
+	- user-defined content detection task's retreived data: https://drive.google.com/file/d/1px0FvPg4OxQdDxZWE0tIi7uhbP1h9qV5/view?usp=sharing)
 
 ```bash
 # you should select threshold strategy.
