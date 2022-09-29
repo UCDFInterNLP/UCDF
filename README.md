@@ -34,17 +34,18 @@ python build_customized_dataset.py
 3. Fine-tuning a classifier with the customized datset
 	- We utilzied a sentence encoder, same encoder type used in training retriever module for fine-tuning. Sentence encoder is fine-tuned with [CLS] token using BCE loss. Training time is different upto selecting building positive samples strategy (min/avg). 
 	- materials related to this task is in 'fine_tuning' folder.
-	- materials related to fine-tuning, such as checkpoint and dataset can be downloaded in the following URL. https://drive.google.com/file/d/1pbgFdfLQ1Oqvsvrb7Qv4Y7wqBSt-A6zY/view?usp=sharing
+	- materials related to fine-tuning, such as checkpoint and dataset can be downloaded in the following URL.
+	- hate speech test data: https://drive.google.com/drive/folders/1SFG3S7t6hDZoTNJeMvGLZMUuoxqW4WMo?usp=sharing
+	- checkpoint: 
+	- Customized test data: We can check customized test data which is used in User-content detection task (Section4.2)
+	- South Korea test data, Relgion test data: https://drive.google.com/drive/folders/1lO_mhJctikmuFTiT5TaEOw1hP3Rn2-kk?usp=sharing
 
 4. Evaluate the quality of UCDF.
 	- We evalute the quality of UCDF with qualitative method and quantitative method. You can conduct quantitative experiment if there exists benchmark dataset. Since there are not a lot of benchmark datasets related to User-defined content (content-agnostic) in a real-world, you probably should implement using qualitative analysis.
 	- materials related to this task is in 'fine_tuning' folder.
 	- If you want to evaluate the quality of UCDF on other contents quantitatively, you should build your own customized test data. See (5. Customized test data).
 
-5. Customized test data
-	- We can check customized test data which is used in User-content detection task (Section4.2)
-	- South Korea test data, Relgion test data for arbitrary contents can be downloaded in the following URL.
-https://drive.google.com/drive/folders/1lO_mhJctikmuFTiT5TaEOw1hP3Rn2-kk?usp=sharing
+
 ```bash
 # code related to fine-tuning and evaluate is in sample python file
 # you should edit dataset and encoder type upto task
