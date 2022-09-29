@@ -218,82 +218,21 @@ def main(cfg: DictConfig):
 
     path = '/anaconda3/envs/paper/DPR/retrieved_text_output/'
 
-    for num_loop in range(2):
+    for num_loop in range(1):
         print(num_loop)
         if num_loop == 0:
     # ================simcse - cos_sim======================
-             # simcse-based cos-sim (min) -> clear (34084 docs / postive)
+            # you should choose settings for experiment with these parameters.
+
+             # simcse-based cos-sim (min)
+             include_random_neg = False
+             with_neg_query = False
              heuristic = 'no' 
              heuristic_N = 0 
              standard_distance = 'min' 
              distance_metric = 'cos_sim' 
              pos_output_path = path + 'simcse/cos_sim/cos_sim_min_simcse_positive.csv' 
              neg_output_path = path + 'simcse/cos_sim/cos_sim_min_simcse_negative.csv' 
-
-        elif num_loop ==1:
-
-            # simcse-based cos-sim (avg)
-            heuristic = 'no' 
-            heuristic_N = 0 
-            standard_distance = 'max' 
-            distance_metric = 'cos_sim' 
-            pos_output_path = path + 'simcse/cos_sim/cos_sim_max_simcse_positive.csv' 
-            neg_output_path = path + 'simcse/cos_sim/ccos_sim_max_simcse_negative.csv' 
-
-        elif num_loop ==2:
-
-             # ================simcse - dot_product======================
-             # simcse-based dot_product (min) 
-             heuristic = 'no' 
-             heuristic_N = 0 
-             standard_distance = 'min' 
-             distance_metric = 'dot_product' 
-             pos_output_path = path + 'simcse/dot_product/dot_product_min_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/dot_product/dot_product_min_simcse_negative.csv' 
-
-        elif num_loop ==3:
-
-             # simcse-based dot_product (avg)
-             heuristic = 'no' 
-             heuristic_N = 0 
-             standard_distance = 'avg' 
-             distance_metric = 'dot_product' 
-             pos_output_path = path + 'simcse/dot_product/dot_product_avg_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/dot_product/dot_product_avg_simcse_negative.csv' 
-
-
-        elif num_loop ==4:
-             heuristic = 'yes' 
-             heuristic_N = 150 
-             standard_distance = 'None' 
-             distance_metric = 'None' 
-             pos_output_path = path + 'simcse/heuristic/heuristic_150_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/heuristic/heuristic_150_simcse_negative.csv' 
-
-        elif num_loop ==5:
-             heuristic = 'yes' 
-             heuristic_N = 200 
-             standard_distance = 'None' 
-             distance_metric = 'None' 
-             pos_output_path = path + 'simcse/heuristic/heuristic_200_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/heuristic/heuristic_200_simcse_negative.csv' 
-
-        elif num_loop ==6:
-             heuristic = 'yes' 
-             heuristic_N = 250 
-             standard_distance = 'None' 
-             distance_metric = 'None' 
-             pos_output_path = path + 'simcse/heuristic/heuristic_250_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/heuristic/heuristic_250_simcse_negative.csv' 
-
-        elif num_loop ==7:
-             heuristic = 'yes' 
-             heuristic_N = 300 
-             standard_distance = 'None' 
-             distance_metric = 'None' 
-             pos_output_path = path + 'simcse/heuristic/heuristic_300_simcse_positive.csv' 
-             neg_output_path = path + 'simcse/heuristic/heuristic_300_simcse_negative.csv' 
-
         
         batch_size = 1024
         
@@ -343,14 +282,37 @@ def main(cfg: DictConfig):
                 "Hate speech or content that demeans, defames, or promotes discrimination or violence on the basis of race, color, caste, ethnicity, national origin, religion, sexual orientation, gender identity, disability, or veteran status, immigration status, socio-economic status, age, weight or pregnancy status",
                 "any activity, post any User Content, or register or use a username, which is or includes material that is offensive, abusive, defamatory, pornographic, threatening, or obscene, or advocates or incites violence."]
 
+
         # religion queries example
         # https://www.history.com/topics/religion/
+        # religion positive queries
         # total_queries = ['Judaism is the world’s oldest monotheistic religion, dating back nearly 4,000 years. ',
         #                  'Christianity is the most widely practiced religion in the world, with more than 2 billion followers. ',
         #                  'Islam is the second largest religion in the world after Christianity, with about 1.8 billion Muslims worldwide.',
-        #                  'Buddhism is a faith that was founded by Siddhartha Gautama (“the Buddha”) more than 2,500 years ago in India. ',
-        #                  'Hinduism is the world’s oldest religion, according to many scholars, with roots and customs dating back more than 4,000 years. '
+        #                 #  'Buddhism is a faith that was founded by Siddhartha Gautama (“the Buddha”) more than 2,500 years ago in India.',
+        #                 #  'Hinduism is the world’s oldest religion, according to many scholars, with roots and customs dating back more than 4,000 years. '
         #                  ]
+        # religion negative queries
+        # negative_queries = [
+        #                 'Buddhism is a faith that was founded by Siddhartha Gautama (“the Buddha”) more than 2,500 years ago in India.',
+        #                 'Hinduism is the world’s oldest religion, according to many scholars, with roots and customs dating back more than 4,000 years.'
+        # ]
+
+
+        # South Korea keyword
+        # south korea positive queries
+        # total_queries = ['South Korea', 'K-pop', 'Kimchi', 'Seoul'] 
+
+        # south korea negative queries
+        # negative_queries = ['North Korea', 'Japan', 'China']
+
+        # Toyota queries examples (keyword + sentence)
+        # total_queries = ["Toyota Motor Corporation",
+        #                 "Akio Toyoda",
+        #                 "Toyota will lead the future mobility society, enriching lives around the world with the safest and most responsible ways of moving people.",
+        #                 "Combining software, hardware and partnerships to create unique value that comes from the Toyota Way."]
+        
+
 
         for query in total_queries:
             questions.append(query)
@@ -517,34 +479,136 @@ def main(cfg: DictConfig):
                 
 
 
-        print('negative samples retrievs start')
-        neg_num = len(retrieved_texts)
-        print(neg_num, ' number of samples will be sampled')
-        keys = random.sample(list(all_passages), neg_num)           
-        negative_texts = [all_passages[k][0] for k in keys]
 
-        cnt = 0
-        for j,text in enumerate(negative_texts):
-            if text in retrieved_texts or 'wiki:' in negative_texts[j]:
-                negative_texts.pop(j)
-                cnt += 1
-        if cnt >= 1:
-            new_keys = random.sample(list(all_passages.values()), cnt+10)
-            negative_texts.extend(new_keys)
-        
+        # negative query input 
+        if with_neg_query:
+            neq_q = []
+            for neg in negative_queries:
+                neq_q.append(neg)
+            
+            neq_questions_tensor = retriever.generate_question_vectors(neq_q, query_token=None)
+            
+            neg_dist_list = []
+            for i, neg_text_a in enumerate(neq_questions_tensor):
+                for j, neg_text_b in enumerate(neq_questions_tensor):
+                    if i != j and i < j:
+                        neg_dist = cos(torch.tensor(neg_text_a),torch.tensor(neg_text_b))
+                        neg_dist_list.append(neg_dist)
+
+            if standard_distance == 'avg':
+                neg_standard_dist = np.average(neg_dist_list)
+            elif standard_distance == 'min':
+                neg_standard_dist = np.min(neg_dist_list)
+            elif standard_distance == 'median':
+                neg_standard_dist = np.median(neg_dist_list)
+            elif standard_distance == 'max':
+                neg_standard_dist = np.max(neg_dist_list)
+
+            logger.info("standard_dist: %s", str(neg_standard_dist))
+
+            neg_top_results_and_scores = retriever.get_top_docs(query_vectors = neq_questions_tensor.numpy(), top_docs = 10000)
+
+            neg_retrieved_texts = []
+            for i, (content, score) in enumerate(neg_top_results_and_scores):
+                print(f'{i}th neg query retrieved texts')
+
+                query = neq_questions_tensor[i]
+
+                tmp_text = []
+                for k in content:
+                    text = all_passages[k]   
+                    text_emb = retriever.generate_question_vectors(text, query_token=None) 
+                    cos_sim = cos(torch.tensor(query),torch.tensor(text_emb[0]))
+                    if  cos_sim > standard_dist:
+                        tmp_text.append(text[0])
+                    else:
+                        continue
+
+                neg_retrieved_texts.append(tmp_text)
+
+            neg_retrieved_texts = sum(neg_retrieved_texts,[])
+            print('negative samples query based retrieving clear!')
+
+            if include_random_neg:
+                print('negative samples randomly retrievs start')
+                neg_num = len(retrieved_texts) // 2 # 50% random sample
+                print(neg_num, ' number of samples will be sampled')
+                keys = random.sample(list(all_passages), neg_num)           
+                negative_texts = [all_passages[k][0] for k in keys]
+
+                cnt = 0
+                for j,text in enumerate(negative_texts):
+                    if text in retrieved_texts or 'wiki:' in negative_texts[j]:
+                        negative_texts.pop(j)
+                        cnt += 1
+                    elif text in neg_retrieved_texts or 'wiki:' in negative_texts[j]:
+                        negative_texts.pop(j)
+                        cnt += 1
+                if cnt >= 1:
+                    new_keys = random.sample(list(all_passages.values()), cnt)
+                    negative_texts.extend(new_keys)
+                print(f'duplicated {cnt}')
+
+                # random 50% sampling
+                neg_dict_random = {'text':negative_texts}
+                neg_df_random = pd.DataFrame(neg_dict_random)
+
+                # neg query 50% sampling
+                neg_dict = {'text':neg_retrieved_texts}
+                neg_df = pd.DataFrame(neg_dict)
+                neg_df = neg_df.sample(n=neg_df.shape[0]//2, random_state=1234)
 
 
-        pos_dict = {'text':retrieved_texts}
-        pos_df = pd.DataFrame(pos_dict)
-        print(f'number of positive samples {pos_df.shape[0]}')
-        pos_df.to_csv(pos_output_path)
+                neg_df = pd.concat([neg_df,neg_df_random],axis=0)
+                print(f'negative number {neg_df.shape[0]}')
+                neg_df.to_csv(neg_output_path)
 
-        neg_dict = {'text':negative_texts}
-        neg_df = pd.DataFrame(neg_dict)
-        print(f'number of negative samples {neg_df.shape[0]}')
-        neg_df.to_csv(neg_output_path)
+                pos_dict = {'text':retrieved_texts}
+                pos_df = pd.DataFrame(pos_dict)
+                print(f'positive number {pos_df.shape[0]}')
+                pos_df.to_csv(pos_output_path)
+
+            else:            
+                pos_dict = {'text':retrieved_texts}
+                neg_dict = {'text':neg_retrieved_texts}
+                pos_df = pd.DataFrame(pos_dict)
+                neg_df = pd.DataFrame(neg_dict)
+
+                print(f'positive number {pos_df.shape[0]}')
+                pos_df.to_csv(pos_output_path)
+
+                print(f'negative number {neg_df.shape[0]}')
+                neg_df.to_csv(neg_output_path)
+
+        # only random sample
+        else:   
+            print('negative samples retrievs start')
+            neg_num = len(retrieved_texts)
+            print(neg_num, ' number of samples will be sampled')
+            keys = random.sample(list(all_passages), neg_num)           
+            negative_texts = [all_passages[k][0] for k in keys]
+
+            cnt = 0
+            for j,text in enumerate(negative_texts):
+                if text in retrieved_texts or 'wiki:' in negative_texts[j]:
+                    negative_texts.pop(j)
+                    cnt += 1
+            if cnt >= 1:
+                new_keys = random.sample(list(all_passages.values()), cnt+10)
+                negative_texts.extend(new_keys)
+            print(f'duplicated {cnt}')
+
+
+            pos_dict = {'text':retrieved_texts}
+            pos_df = pd.DataFrame(pos_dict)
+            print(f'positive number {pos_df.shape[0]}')
+            pos_df.to_csv(pos_output_path)
+
+            neg_dict = {'text':negative_texts}
+            neg_df = pd.DataFrame(neg_dict)
+            print(f'negative number {neg_df.shape[0]}')
+            neg_df.to_csv(neg_output_path)
 
 
 if __name__ == "__main__":
     main()
-
