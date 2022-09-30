@@ -38,7 +38,7 @@ python build_customized_dataset.py
 	- materials related to this task is in 'fine_tuning' folder.
 	- materials related to fine-tuning, such as checkpoint and dataset can be downloaded in the following URL.
 	- hate speech test data: https://drive.google.com/drive/folders/1SFG3S7t6hDZoTNJeMvGLZMUuoxqW4WMo?usp=sharing
-	- checkpoint: 
+	- checkpoint: https://drive.google.com/file/d/1neuogXLuKbJBsFsc7lFJNNcSFh_SRIgX/view?usp=sharing
 	- Customized test data: We can check customized test data which is used in User-content detection task (Section4.2)
 	- South Korea test data, Relgion test data: https://drive.google.com/drive/folders/1lO_mhJctikmuFTiT5TaEOw1hP3Rn2-kk?usp=sharing
 
